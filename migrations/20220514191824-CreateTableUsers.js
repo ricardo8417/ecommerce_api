@@ -18,7 +18,6 @@ module.exports = {
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE,
         })
-
     },
 
     async down(queryInterface, Sequelize) {
@@ -29,6 +28,5 @@ module.exports = {
          * await queryInterface.dropTable('users');
          */
         await queryInterface.dropTable('users');
-
     }
 };

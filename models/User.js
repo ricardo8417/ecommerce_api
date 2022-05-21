@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 
+
 module.exports = (sequelize) => {
 
     const User = sequelize.define('users', {
@@ -20,8 +21,10 @@ module.exports = (sequelize) => {
             },
         },
     });
+
     User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password)
     }
+
     return User;
 }
