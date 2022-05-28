@@ -34,12 +34,14 @@ router.post("/login", async(req, res) => {
 router.post("/signup", async(req, res) => {
     // Validarás si el usuario existe dentro de tu base de datos, en caso de ser verdadero, continuaras con el proceso.
     const { body } = req;
-    let user = await sequelize.models.users.findOne({
-        email: body.email,
-    });
 
+    let user = await sequelize.models.users.findOne({
+        where: {
+            email: body.email, // revisar si el usuario existe con el email 
+        },
+    });
     if (user) {
-        return res.status(400).json({ message: "this email is already registered" });
+        return res.status(400).json({ message: "this email is already registere" });
     }
     // logica de hendlers Ojo con las propiedades del User
     // Creating the user
@@ -52,7 +54,7 @@ router.post("/signup", async(req, res) => {
         })
         // Saving user
     await user.save();
-    return res.json({ message: 'Your account was created successfully' });
+    return res.json({ message: 'Se Creo tu Usuario tu conexion esta Ok Con MariaDb revisar tus tablas' });
 
     // Verificarás en tu base de datos que el usuario haya sido creado correctamente.
 

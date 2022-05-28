@@ -1,16 +1,17 @@
 const { Sequelize } = require('sequelize');
-// Database connection
-const sequelize = new Sequelize('ecommerce_api', 'root', 'root', {
-    host: 'localhost',
-    dialect: 'mariadb',
-    logging: false,
-});
 
 // Importing models
 const Product = require('./models/Product');
 const Review = require('./models/Review');
 const User = require('./models/User');
 const Order = require('./models/Order');
+
+// Database connection
+const sequelize = new Sequelize('dbecommerce', 'ricardo', 'Matrix27', {
+    host: 'localhost',
+    dialect: 'mariadb',
+    logging: false,
+});
 
 // Getting models
 const models = [
@@ -25,13 +26,10 @@ for (let model of models) {
     model(sequelize);
 }
 
-//configuración de relación
-const { products, reviews, users, orders } = sequelize.models
-reviews.belongsTo(products) // Relation one-to-one in rewies table
-orders.belongsTo(users)
-orders.belongsTo(products)
-
-
-
+// Configuring relations
+const { products, reviews, users, orders } = sequelize.models;
+reviews.belongsTo(products); // Relation one-to-one in reviews table
+orders.belongsTo(users); // Relation: Order has one user
+orders.belongsTo(products); // Relation: Order has one product
 
 module.exports = sequelize;

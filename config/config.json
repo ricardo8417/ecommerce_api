@@ -1,8 +1,8 @@
 {
     "development": {
-        "username": "root",
+        "username": "ricardo",
         "password": "Matrix27",
-        "database": "ecommerce_api",
+        "database": "dbecommerce",
         "host": "127.0.0.1",
         "port": "3307",
         "dialect": "mariadb"
